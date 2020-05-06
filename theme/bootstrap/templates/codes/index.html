@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Codes {% endblock %}
+
+{% block content %}
+<div>
+    {% for code in codes_list %}
+    <ul>
+        <li>
+            <a href="{{ code.name }}">{{ code }}</a>
+        </li>
+    </ul>
+    {% endfor %}
+</div>
+{% endblock %}

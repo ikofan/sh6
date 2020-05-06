@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} {{ code.name }}-{{ code.title }} Code Details {% endblock %}
+
+{% block content %}
+<h1>{{ code.name }} - {{ code.title }}</h1>
+<div>
+    <span>Drive type:
+{#    多对多关系，如果要想显示所有的标签就用.all()，返回的是一个列表，遍历列表#}
+        {% for drive in code.drive_type.all %}
+            {{ drive.get_name_display }}
+
+        {% endfor %}
+
+    </span>
+    <br>
+    <span>Brand: {{ code.get_brand_display }}</span> <br>
+    <span>System:
+    {% for system in code.system.all %}
+        {{ system.name }}
+    {% endfor %}
+
+    </span>
+    <br>
+<span>
+    Restrictions:
+    <br>
+    With: {{ code.restriction_with }}
+    <br>
+    Not With: {{ code.restriction_not_with }}
+</span>
+    {% autoescape off %}
+    <hr>Personal Comments:
+    {{ code.personal_comments }}
+{% if code.knowledge %}
+        <hr>
+        Knowledge:
+        {{ code.knowledge }}
+{% endif %}
+    <hr>
+        Details:
+    {{ code.content }}
+    {% endautoescape %}
+</div>
+
+{% endblock %}
