@@ -4,8 +4,19 @@
 {% block title %} Codes {% endblock %}
 
 {% block content %}
-<div>
-    <ul>
+    <div class="row text-center">
+    <div class="col-md-12">
+            <h1>Codes List</h1>
+    </div>
+
+</div>
+    <hr>
+<div class="row">
+<div class="col-md-3">
+    <hr>
+</div>
+<div class="col-md-9">
+        <ul>
 
     {% for code in codes_list %}
         <li>
@@ -15,6 +26,8 @@
         </li>
     {% endfor %}
         </ul>
+</div>
+
 
 </div>
 {% endblock %}

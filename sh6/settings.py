@@ -32,6 +32,9 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'codes',
+    'ckeditor',
+    'ckeditor_uploader',
+    # 'mdeditor',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -52,11 +55,14 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'sh6.urls'
 
+THEME = 'lux'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        # 'DIRS': [os.path.join(BASE_DIR, 'theme/bootstrap/templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'theme', THEME, 'templates')],
+
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -120,3 +126,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# 下面这句从mywork复制过来
+STATICFILES_DIRS = (  # 自定义静态文件位置
+    os.path.join(BASE_DIR, "static"),  # 注意不要丢掉这个逗号，因为这是个元祖
+ )
+
+# 执行python manage.py collectstatic需要下面这个
+# STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+CKEDITOR_UPLOAD_PATH = 'uploads/'

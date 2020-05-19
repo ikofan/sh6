@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from ckeditor_uploader.fields import RichTextUploadingField
 # Create your models here.
 
 
@@ -15,6 +15,23 @@ class System(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = 'System'
+
+
+class CodeImg(models.Model):
+    code_name = models.CharField(max_length=200, verbose_name='Code')
+    code_img = models.ImageField(verbose_name='Code Image')
+
+    def photo_url(self):
+        if self.code_img and hasattr(self.code_img, 'url'):
+            return self.code_img.url
+        else:
+            return '/default/1.jpg'
+
+    def __str__(self):
+        return self.code_name
+
+    class Meta:
+        verbose_name = verbose_name_plural = 'Code IMG'
 
 
 class DriveType(models.Model):
@@ -91,10 +108,12 @@ class CodesH6(models.Model):
     H6A = 1
     H6B = 2
     H6 = 3
+    NA = 0
     BRAND_ITEMS = (
         (H6A, 'H6A'),
         (H6B, 'H6B'),
         (H6, 'H6'),
+        (NA, 'NA'),
     )
 
     name = models.CharField(max_length=10, verbose_name='Code')
@@ -104,17 +123,22 @@ class CodesH6(models.Model):
     status = models.PositiveIntegerField(choices=STATUS_ITEMS, verbose_name='Status')
     restriction_with = models.CharField(max_length=500, verbose_name='With', blank=True)
     restriction_not_with = models.CharField(max_length=500, verbose_name='Not With', blank=True)
-    brand = models.PositiveIntegerField(choices=BRAND_ITEMS, verbose_name='Brand')
+    brand = models.PositiveIntegerField(choices=BRAND_ITEMS, verbose_name='Brand', blank=True)
     drive_type = models.ManyToManyField(DriveType, verbose_name='Drive Type')
     package = models.ManyToManyField(Packages, verbose_name='Package', blank=True)
-    personal_comments = models.CharField(max_length=500, verbose_name='Personal Comments', blank=True)
-    knowledge = models.CharField(max_length=500, verbose_name='Knowledge', blank=True)
+    personal_comments = RichTextUploadingField(blank=True)
+    knowledge = RichTextUploadingField(blank=True)
+    content = RichTextUploadingField(blank=True)
 
     owner = models.ForeignKey(User, verbose_name='Owner', on_delete=models.CASCADE, default=4)
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='Created Time')
 
     def __str__(self):
-        return self.name + ': ' + self.title
+        return self.name + '-' + self.title
 
     class Meta:
         verbose_name = verbose_name_plural = 'H6 Codes'
+
+
+
+

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import System, Packages, CodesH6, DriveType
+from .models import System, Packages, CodesH6, DriveType, CodeImg
 
 
 # Register your models here.
@@ -41,3 +41,8 @@ class CodesH6Admin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         obj.owner = request.user
         return super(CodesH6Admin, self).save_model(request, obj, form, change)
+
+
+@admin.register(CodeImg)
+class CodeImgAdmin(admin.ModelAdmin):
+    list_display = ('id', 'code_name', 'code_img')
