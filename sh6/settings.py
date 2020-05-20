@@ -139,3 +139,20 @@ STATICFILES_DIRS = (  # 自定义静态文件位置
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 CKEDITOR_UPLOAD_PATH = 'uploads/'
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink'],
+            ['Undo', 'Redo'],
+            ['TextColor', 'BGColor'],
+            ['Find', 'Replace', '-', 'SelectAll'],
+            ['Styles', 'Format', 'Font', 'FontSize'],
+            ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar'],
+            ['RemoveFormat', 'Source']
+        ]
+    }
+}

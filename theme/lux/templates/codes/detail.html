@@ -53,8 +53,10 @@
 
     <div class="row">
         <div class="col-md-12">
+            <br>
+            <h4>Characteristics:</h4>
             <table class="table table-hover">
-                <caption style="caption-side: top">General information</caption>
+                {#                <caption style="caption-side: top">General information</caption>#}
                 <thead>
                 <tr>
                     <th scope="col">Brand</th>
@@ -66,6 +68,7 @@
                     {% if code.restriction_with %}
                         <th scope="col">Not With</th>
                     {% endif %}
+                    <th scope="col">Status</th>
                 </tr>
                 </thead>
 
@@ -86,21 +89,43 @@
                     {% if code.restriction_not_with %}
                         <td>{{ code.restriction_not_with }}</td>
                     {% endif %}
+                    <td>{{ code.get_status_display }}</td>
                 </tr>
                 </tbody>
             </table>
 
             {% autoescape off %}
-                <hr>Personal Comments:
-                {{ code.personal_comments }}
+
+                {% if code.brief %}
+                    <hr>
+                    <h4>In Brief:</h4>
+                    {{ code.brief }}
+                {% endif %}
+
+                {% if code.benefits %}
+                    <hr>
+                    <h4>Benefits and Arguments:</h4>
+                    {{ code.benefits }}
+                {% endif %}
+
+                {% if code.comments %}
+                    <hr>
+                    <h4>S-AEF Comments:</h4>
+                    {{ code.comments }}
+                {% endif %}
+
+                {% if code.personal_comments %}
+                    <hr>
+                    <h4>Personal Comments:</h4>
+                    {{ code.personal_comments }}
+                {% endif %}
+
                 {% if code.knowledge %}
                     <hr>
-                    Knowledge:
+                    <h4>Knowledge:</h4>
                     {{ code.knowledge }}
                 {% endif %}
-                <hr>
-                Details:
-                {{ code.content }}
+
             {% endautoescape %}
 
         </div>
