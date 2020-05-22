@@ -16,6 +16,14 @@ p.create后就直接操作数据库写入记录了，不用p.save，也没有这
 参考：https://blog.csdn.net/ZT7524/article/details/89916879
 """
 
+"""
+命令行赋值一直不行，报错外键约束问题，原来owner default=4，但是数据库里面没有4
+c=CodesH6(name='Dummy3',status=1,brand=1,owner_id=3)
+c.save()
+多对多不能直接add值，要用id，或者对象
+c.system.add('Chassis')
+"""
+
 
 def imp_codes(io):
     start_row = 1
