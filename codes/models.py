@@ -131,7 +131,7 @@ class CodesH6(models.Model):
     personal_comments = RichTextUploadingField(blank=True, verbose_name='Personal Comments')
     knowledge = RichTextUploadingField(blank=True, verbose_name='Knowledge')
 
-    owner = models.ForeignKey(User, verbose_name='Owner', on_delete=models.CASCADE, default=4)
+    owner = models.ForeignKey(User, verbose_name='Owner', on_delete=models.CASCADE, default=3)
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='Created Time')
 
     def __str__(self):

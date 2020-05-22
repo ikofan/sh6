@@ -9,45 +9,48 @@
             <hr>
             <h3>{{ code.name }} - {{ code.title }}</h3>
             <hr>
-            <div id="code_img" class="carousel slide" data-ride="carousel">
-                <!-- 指示符 -->
+            {% if images %}
+                <div id="code_img" class="carousel slide" data-ride="carousel">
+                    <!-- 指示符 -->
 
-                <ul class="carousel-indicators">
+                    <ul class="carousel-indicators">
 
-                    {% for img in images %}
-                        {% if forloop.first %}
-                            <li data-target="#code_img" data-slide-to="{{ forloop.counter0 }}" class="active"></li>
-                        {% else %}
-                            <li data-target="#code_img" data-slide-to="{{ forloop.counter0 }}"></li>
-                        {% endif %}
+                        {% for img in images %}
+                            {% if forloop.first %}
+                                <li data-target="#code_img" data-slide-to="{{ forloop.counter0 }}" class="active"></li>
+                            {% else %}
+                                <li data-target="#code_img" data-slide-to="{{ forloop.counter0 }}"></li>
+                            {% endif %}
 
-                    {% endfor %}
-                </ul>
-                <!-- 轮播图片 -->
+                        {% endfor %}
+                    </ul>
+                    <!-- 轮播图片 -->
 
-                <div class="carousel-inner">
-                    {% for img in images %}
-                        {% if forloop.first %}
-                            <div class="carousel-item active">
-                                <img src={{ img.photo_url }}>
-                            </div>
-                        {% else %}
-                            <div class="carousel-item">
-                                <img src={{ img.photo_url }}>
-                            </div>
-                        {% endif %}
+                    <div class="carousel-inner">
+                        {% for img in images %}
+                            {% if forloop.first %}
+                                <div class="carousel-item active">
+                                    <img src={{ img.photo_url }}>
+                                </div>
+                            {% else %}
+                                <div class="carousel-item">
+                                    <img src={{ img.photo_url }}>
+                                </div>
+                            {% endif %}
 
-                    {% endfor %}
+                        {% endfor %}
+                    </div>
+                    <!-- 左右切换按钮 -->
+                    <a class="carousel-control-prev" href="#code_img" data-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#code_img" data-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
+
                 </div>
-                <!-- 左右切换按钮 -->
-                <a class="carousel-control-prev" href="#code_img" data-slide="prev">
-                    <span class="carousel-control-prev-icon"></span>
-                </a>
-                <a class="carousel-control-next" href="#code_img" data-slide="next">
-                    <span class="carousel-control-next-icon"></span>
-                </a>
+            {% endif %}
 
-            </div>
         </div>
     </div>
 
