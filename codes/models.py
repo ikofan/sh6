@@ -131,7 +131,7 @@ class CodesH6(models.Model):
     personal_comments = RichTextUploadingField(blank=True, verbose_name='Personal Comments')
     knowledge = RichTextUploadingField(blank=True, verbose_name='Knowledge')
 
-    owner = models.ForeignKey(User, verbose_name='Owner', on_delete=models.CASCADE, default=4)
+    owner = models.ForeignKey(User, verbose_name='Owner', on_delete=models.CASCADE, default=3)
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='Created Time')
 
     def __str__(self):
@@ -142,4 +142,10 @@ class CodesH6(models.Model):
 
 
 
-
+"""
+命令行赋值一直不行，报错外键约束问题，原来owner default=4，但是数据库里面没有4
+c=CodesH6(name='Dummy3',status=1,brand=1,owner_id=3)
+c.save()
+多对多不能直接add值，要用id，或者对象
+c.system.add('Chassis')
+"""
