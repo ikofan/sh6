@@ -1,4 +1,3 @@
-import datetime
 import xlrd
 import os
 import django
@@ -109,7 +108,8 @@ def imp(io):
 
 
 def main():
-    io = r'D:\sh6-saef27.xlsx'
+    # io = r'D:\sh6-saef27.xlsx'
+    io = r'C:\Users\kapa\OneDrive\工作文档\sh6-saef27.xlsx'
     imp(io)
     print('导入成功！')
 
